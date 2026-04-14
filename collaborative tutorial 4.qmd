@@ -1,0 +1,39 @@
+---
+title: "tutorial 4 collabrorative"
+format: html
+editor: visual
+bibliography: refrences.bib 
+---
+
+```{r}
+#| label: fig-penguins-scatter
+#| fig-cap: "Body mass vs. Flipper length for three penguin species."
+#| warning: false
+library(ggplot2)
+library(palmerpenguins)
+
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
+  geom_point() +
+  theme_minimal()
+
+```
+@fig-penguins-scatter This is a scatterplot of penguins species
+
+```{r}
+
+#| label: tbl-penguin-summary
+#| tbl-cap: "Mean body mass of penguins by species and sex."
+library(dplyr)
+
+penguins |>
+  filter(!is.na(sex)) |>
+  group_by(species, sex) |>
+  summarise(mean_mass = mean(body_mass_g)) |>
+  knitr::kable()
+```
+
+
+@tbl-penguin-summary showcases the average of penguins based on species and sex
+
+
+@penguins_data 
